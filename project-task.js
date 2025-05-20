@@ -52,10 +52,10 @@ const todos = [
   */
   
   
-  //let taskByPriority = todos.sort((a, b) => task.priority)
-  //console.log(taskByPriority);
+  let taskByPriority = todos.sort((a, b) => a.priority - b.priority);
+  console.log(taskByPriority);
 
-  //Totaly lost on how sort works, something bizare is going on with establishing a range with the parameters. 
+  //Totaly lost on how sort paramters work, something bizare is going on with establishing a range with the parameters. I can get it to work but I need to review for understanding what is going on.
   
   /*
   🔹 Task 3: Mark All Tasks as Completed
@@ -66,10 +66,10 @@ const todos = [
   3. Change the `completed` property to `true` for every task.
   */
 
- let tasksCompleted = todos.map((task) => task.completed = true);
+ let tasksCompleted = todos.map(task => task.completed = true);
   console.log(tasksCompleted);
-//This just produces an array containing only five instances of the value true, not what we were wanting. I couldn't figure out what to do so I checked the solutions, and it seems the spread operator is required. I've looked up the syntax but I don't get it at all. Other inexplicable behavior includes the console.log printing this five seperate times, each including a totally extraneous 'completed: true' at the end. So God help me. 
-let completedTasksArray = todos.map((task) => ({...todos, completed: true}));
+//Code above just produces an array containing only five instances of the value true, not what we were wanting. I couldn't figure out what to do so I checked the solutions, and it seems the spread operator is required. I've looked up the syntax but I don't get it at all. Other inexplicable behavior includes the console.log printing the new object five seperate times, each including a totally extraneous 'completed: true' at the end. So God help me. Wait...it had something to do with the relationship between the parameter for .map and the spread operator. How they interact I'm still lost on but I at least fixed it. 
+let completedTasksArray = todos.map(tasks => ({...tasks, completed: true}));
 console.log(completedTasksArray);
 
 
@@ -82,7 +82,7 @@ console.log(completedTasksArray);
   3. Use method chaining to perform both steps together.
   */
   
-let prioritizedIncompletes = todos.filter((task) => task.completed === false).sort();
+let prioritizedIncompletes = todos.filter(task => task.completed === false).sort((a, b) => a.priority - b.priority);
 console.log(prioritizedIncompletes);
 //Method chaining shouldn't be a problem but I'll need to sort out how the sort() method works first. Currently this produces an empty array. 
 
@@ -95,3 +95,20 @@ console.log(prioritizedIncompletes);
   // console.log("Sorted by Priority:", ...);
   // console.log("All Tasks Completed:", ...);
   // console.log("Sorted Incomplete Tasks:", ...);
+
+
+ //Scratchpad follows 
+
+  let stringArray = ["Golbin", "Bokoblin", "Moblin", "Jack Dorsey"];
+  let uppercaseArray = stringArray.map(string => string.toUpperCase());
+  console.log(uppercaseArray);
+
+
+function createGreeter(greeting) {
+  return function(name) {
+    return `${greeting} ${name}!`;
+  }
+};
+
+const hiGreeter = createGreeter("Hi!");
+console.log(hiGreeter('Susan'));
