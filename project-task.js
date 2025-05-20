@@ -38,8 +38,10 @@ const todos = [
   2. Use an anonymous function as the callback.
   3. Return only the tasks that are not completed.
   */
-  
-  
+  let incompleteTasks = todos.filter((task) => task.completed === false);
+  console.log(incompleteTasks);
+
+
   /*
   🔹 Task 2: Sort Tasks by Priority
   
@@ -50,6 +52,11 @@ const todos = [
   */
   
   
+  //let taskByPriority = todos.sort((a, b) => task.priority)
+  //console.log(taskByPriority);
+
+  //Totaly lost on how sort works, something bizare is going on with establishing a range with the parameters. 
+  
   /*
   🔹 Task 3: Mark All Tasks as Completed
   
@@ -58,8 +65,14 @@ const todos = [
   2. Use an anonymous function to modify each object.
   3. Change the `completed` property to `true` for every task.
   */
-  
-  
+
+ let tasksCompleted = todos.map((task) => task.completed = true);
+  console.log(tasksCompleted);
+//This just produces an array containing only five instances of the value true, not what we were wanting. I couldn't figure out what to do so I checked the solutions, and it seems the spread operator is required. I've looked up the syntax but I don't get it at all. Other inexplicable behavior includes the console.log printing this five seperate times, each including a totally extraneous 'completed: true' at the end. So God help me. 
+let completedTasksArray = todos.map((task) => ({...todos, completed: true}));
+console.log(completedTasksArray);
+
+
   /*
   🔹 Task 4: Combine Filters
   
@@ -69,6 +82,10 @@ const todos = [
   3. Use method chaining to perform both steps together.
   */
   
+let prioritizedIncompletes = todos.filter((task) => task.completed === false).sort();
+console.log(prioritizedIncompletes);
+//Method chaining shouldn't be a problem but I'll need to sort out how the sort() method works first. Currently this produces an empty array. 
+
   
   // ============================================
   // 🧪 Console Test Your Work
@@ -78,6 +95,3 @@ const todos = [
   // console.log("Sorted by Priority:", ...);
   // console.log("All Tasks Completed:", ...);
   // console.log("Sorted Incomplete Tasks:", ...);
-  
-
-  //Adding my own comment before pushing to Github
