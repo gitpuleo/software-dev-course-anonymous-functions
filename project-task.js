@@ -66,12 +66,11 @@ const todos = [
   3. Change the `completed` property to `true` for every task.
   */
 
- let tasksCompleted = todos.map(task => task.completed = true);
-  console.log(tasksCompleted);
-//Code above just produces an array containing only five instances of the value true, not what we were wanting. I couldn't figure out what to do so I checked the solutions, and it seems the spread operator is required. I've looked up the syntax but I don't get it at all. Other inexplicable behavior includes the console.log printing the new object five seperate times, each including a totally extraneous 'completed: true' at the end. So God help me. Wait...it had something to do with the relationship between the parameter for .map and the spread operator. How they interact I'm still lost on but I at least fixed it. 
+
 let completedTasksArray = todos.map(tasks => ({...tasks, completed: true}));
 console.log(completedTasksArray);
 
+//now functions correctly
 
   /*
   🔹 Task 4: Combine Filters
@@ -84,7 +83,8 @@ console.log(completedTasksArray);
   
 let prioritizedIncompletes = todos.filter(task => task.completed === false).sort((a, b) => a.priority - b.priority);
 console.log(prioritizedIncompletes);
-//Method chaining shouldn't be a problem but I'll need to sort out how the sort() method works first. Currently this produces an empty array. 
+
+//method chaining now functions correctly 
 
   
   // ============================================
